@@ -80,11 +80,12 @@
   // Define infobox widget
   function codeAddress() {
       var address = destination;
+      <f:comment></f:comment>var markerText = {f:if(condition: '{data.tx_hhgmapssimplest_marker_text}', then: '<f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.tx_hhgmapssimplest_marker_text}</f:format.html>')};
        geocoder.geocode( { 'address': address }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           map.setCenter(results[0].geometry.location);
           var coordInfoWindow = new google.maps.InfoWindow({
-            <f:comment></f:comment>content: "<div class='infoWindow'>{f:if(condition: '{data.tx_hhgmapssimplest_marker_text}', then: '<f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.tx_hhgmapssimplest_marker_text}</f:format.html>')}Bitte geben Sie Ihre Adresse ein:</p><input id='address' type='textbox' value='' style='border: 1px solid #f0f0f0;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;'> <input type='button' value='Start' onClick='showRoute();'></div>",
+            content: "<div class='infoWindow'>"+markerText+"Bitte geben Sie Ihre Adresse ein:</p><input id='address' type='textbox' value='' style='border: 1px solid #f0f0f0;-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;'> <input type='button' value='Start' onClick='showRoute();'></div>",
             map: map,
             position: results[0].geometry.location
           });
