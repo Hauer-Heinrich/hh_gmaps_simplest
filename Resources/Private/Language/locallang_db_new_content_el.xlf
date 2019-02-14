@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2019-02-14T14:40:48+01:00" product-name="hh_gmaps_simplest">
+    <header/>
+    <body>
+      <trans-unit id="wizards.newContentElement.gmaps_title" xml:space="preserve">
+        <source>Simplest Google Map</source>
+      </trans-unit>
+      <trans-unit id="wizards.newContentElement.gmaps_description" xml:space="preserve">
+        <source></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

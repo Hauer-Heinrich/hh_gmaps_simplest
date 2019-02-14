@@ -1,0 +1,34 @@
+
+mod {
+    web_layout {
+        tt_content {
+            preview {
+                hhgmapssimplest {
+                    templateRootPath = EXT:hh_gmaps_simplest/Resources/Private/Backend/Templates/
+                    layoutRootPath = EXT:hh_gmaps_simplest/Resources/Private/Backend/Layout/
+                    partialRootPath = EXT:hh_gmaps_simplest/Resources/Private/Backend/Partials/
+                }
+            }
+        }
+    }
+
+    wizards {
+        newContentElement {
+            wizardItems {
+                common {
+                    elements {
+                        gmaps {
+                            iconIdentifier = tx_hhgmapssimplest_gmaps
+                            title = LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db_new_content_el.xlf:wizards.newContentElement.gmaps_title
+                            description = LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db_new_content_el.xlf:wizards.newContentElement.gmaps_description
+                            tt_content_defValues {
+                                CType = hhgmapssimplest_gmaps
+                            }
+                        }
+                    }
+                    show := addToList(gmaps)
+                }
+            }
+        }
+    }
+}
