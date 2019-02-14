@@ -80,7 +80,7 @@
   // Define infobox widget
   function codeAddress() {
       var address = destination;
-      <f:comment></f:comment>var markerText = {f:if(condition: '{data.tx_hhgmapssimplest_marker_text}', then: '<f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.tx_hhgmapssimplest_marker_text}</f:format.html>')};
+      <f:comment></f:comment>var markerText = "<f:if condition='{data.tx_hhgmapssimplest_marker_text}'><f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.tx_hhgmapssimplest_marker_text}</f:format.html></f:if>";
        geocoder.geocode( { 'address': address }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           map.setCenter(results[0].geometry.location);
