@@ -30,7 +30,7 @@
     <div id="map_canvas"></div>
     <div id="map_direction" style="background-color:#FFF;display:none;padding-left:6%;padding-right:6%;"><h4>Ihre Route (<span class="btn_print_contact">drucken</span>): <span id="total"></span></h4></div>
   <!-- STARTING MAP DEFINITION -->
-  <f:variable name="apiKey"><f:if condition="{data.tx_hhgmapssimplest_gmaps_key}"><f:then>"{data.tx_hhgmapssimplest_gmaps_key}"</f:then><f:else>API-KEY-HERE</f:else></f:if></f:variable>
+  <f:variable name="apiKey"><f:if condition="{data.tx_hhgmapssimplest_gmaps_key}"><f:then>{data.tx_hhgmapssimplest_gmaps_key}</f:then><f:else>API-KEY-HERE</f:else></f:if></f:variable>
   <script src="<f:format.raw>{f:uri.external(uri: 'https://maps.google.com/maps/api/js?language=de&key={apiKey}')}</f:format.raw>"></script>
 <script>
   var rendererOptions = {
