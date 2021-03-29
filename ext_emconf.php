@@ -10,7 +10,7 @@
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF["hh_gmaps_simplest"] = [
+$EM_CONF['hh_gmaps_simplest'] = [
     "title" => "hh_gmaps_simplest",
     "description" => "",
     "category" => "fe",
