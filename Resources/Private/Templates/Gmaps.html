@@ -1,37 +1,49 @@
-<f:if condition="{data.header}">
-    {data.header}<br />
-</f:if>
+<f:comment>
+    <f:if condition="{data.header}">
+        {data.header}<br />
+    </f:if>
 
-<f:if condition="{data.subheader}">
-    {data.subheader}<br />
-</f:if>
+    <f:if condition="{data.subheader}">
+        {data.subheader}<br />
+    </f:if>
 
-<f:if condition="{data.header_link}">
-    <f:link.page pageUid="{data.header_link}">{data.header_link}</f:link.page><br />
-</f:if>
+    <f:if condition="{data.header_link}">
+        <f:link.page pageUid="{data.header_link}">{data.header_link}</f:link.page><br />
+    </f:if>
 
-<f:if condition="{data.header_layout}">
-    <f:switch expression="{data.header_layout}">
-        <f:case value="1">Value is: 1</f:case>
-        <f:case value="2">Value is: 2</f:case>
-        <f:case value="3">Value is: 3</f:case>
-    </f:switch><br />
-</f:if>
+    <f:if condition="{data.header_layout}">
+        <f:switch expression="{data.header_layout}">
+            <f:case value="1">Value is: 1</f:case>
+            <f:case value="2">Value is: 2</f:case>
+            <f:case value="3">Value is: 3</f:case>
+        </f:switch><br />
+    </f:if>
 
-<f:if condition="{data.header_position}">
-    <f:switch expression="{data.header_position}">
-        <f:case value="1">Value is: 1</f:case>
-        <f:case value="2">Value is: 2</f:case>
-        <f:case value="3">Value is: 3</f:case>
-    </f:switch><br />
-</f:if>
+    <f:if condition="{data.header_position}">
+        <f:switch expression="{data.header_position}">
+            <f:case value="1">Value is: 1</f:case>
+            <f:case value="2">Value is: 2</f:case>
+            <f:case value="3">Value is: 3</f:case>
+        </f:switch><br />
+    </f:if>
+</f:comment>
 
 <div id="wrapper" class="map-wrapper">
-    <div id="map_canvas"></div>
-    <div id="map_direction" style="background-color:#FFF;display:none;padding-left:6%;padding-right:6%;"><h4>Ihre Route (<span class="btn_print_contact">drucken</span>): <span id="total"></span></h4></div>
+    <f:if condition="{data.tx_hhgmapssimplest_gmaps_key}">
+        <f:then>
+            <f:render section="default" arguments="{_all}" />
+        </f:then>
+        <f:else>
+            <p class="error" style="background-color: red; color: #fff; padding: 10px;">No Googlemaps API-Key given!</p>
+        </f:else>
+    </f:if>
+</div>
+
+<f:section name="default">
+    <div id="map_canvas" class="gmaps_map"></div>
+    <div id="map_direction" class="gmaps_direction" style="background-color:#FFF;display:none;padding-left:6%;padding-right:6%;"><h4>Ihre Route (<span class="btn_print_contact">drucken</span>): <span id="total"></span></h4></div>
   <!-- STARTING MAP DEFINITION -->
-  <f:variable name="apiKey"><f:if condition="{data.tx_hhgmapssimplest_gmaps_key}"><f:then>{data.tx_hhgmapssimplest_gmaps_key}</f:then><f:else>API-KEY-HERE</f:else></f:if></f:variable>
-  <script src="<f:format.raw>{f:uri.external(uri: 'https://maps.google.com/maps/api/js?language=de&key={apiKey}')}</f:format.raw>"></script>
+  <script src="<f:format.raw>{f:uri.external(uri: 'https://maps.google.com/maps/api/js?language=de&key={data.tx_hhgmapssimplest_gmaps_key}')}</f:format.raw>"></script>
     <script>
         var rendererOptions = {
             draggable: true
@@ -112,14 +124,14 @@
                         }
                     });
                 }, function() {
-                //
+                    //
                 });
             }
         }
         // DO NOT CHANGE CODE ABOVE!
         // Change custom parameters starting from here:
         var zoom = 11; // map zoom
-        <f:comment></f:comment>var destination = "{f:if(condition: '{data.tx_hhgmapssimplest_marker_dest}', then: '{data.tx_hhgmapssimplest_marker_dest}')}"; // destination, your address
+        var destination = <f:if condition="{data.tx_hhgmapssimplest_marker_dest}">"{data.tx_hhgmapssimplest_marker_dest}"</f:if>; // destination, your address
         document.getElementById('map_canvas').style.width = '100%'; // map width
         google.maps.event.addDomListener(window, 'load', initialize(), codeAddress());
         window.addEventListener('resize', function(event){
@@ -128,4 +140,47 @@
         });
     </script>
   <!-- END OF MAP DEFINITION -->
-</div>
+    <script>
+        /**
+         * Print function
+         * @public
+         * @param {Element} content  the element to which should be printed
+         */
+        function printMapsRoute(content) {
+            var win=null;
+            win = window.open();
+            self.focus();
+            win.document.open();
+            win.document.write('<html><head><style>');
+            win.document.write('html, body { float: left; display: block; max-width: 800px; width: 100%; } body, td, th { font-family: Verdana; font-size: 10pt; text-align: left; } thead { font-size: 10pt; } h1 { font-family: Verdana; font-size: 12pt; } h2 { font-family: Verdana; font-size: 10pt; }.contenttable { border-collapse: separate; border-spacing: 0; color:#706f6f; clear: both; margin: 0 auto; width: 100%; }b {color:#706f6f;}.tx-powermail {display:none;}');
+            win.document.write('</style></head><body>');
+            win.document.write(content);
+            win.document.write('</body></html>');
+            win.document.close();
+            setTimeout(function() {
+                win.print();
+                win.close();
+            }, 2000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.NodeList && !NodeList.prototype.forEach) {
+                NodeList.prototype.forEach = Array.prototype.forEach;
+            }
+
+            let gmapsWrapperK = document.querySelectorAll(".map-wrapper");
+            if(gmapsWrapperK) {
+                gmapsWrapperK.forEach(function(element) {
+                    var gmapsDirection = element.querySelector(".gmaps_direction"),
+                        gmapsBtnPrint = gmapsDirection.querySelector(".btn_print_contact");
+                    if(gmapsBtnPrint) {
+                        gmapsBtnPrint.addEventListener("click", function(event) {
+                            event.preventDefault();
+                            printMapsRoute(gmapsDirection.innerHTML);
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</f:section>
