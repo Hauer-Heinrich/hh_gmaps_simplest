@@ -18,10 +18,10 @@ $EM_CONF['hh_gmaps_simplest'] = [
     "author_email" => "chackl@hauer-heinrich.de",
     "author_company" => "Werbeagentur Hauer-Heinrich.de",
     "state" => "stable",
-    "version" => "0.1.0",
+    "version" => "0.1.1",
     "constraints" => [
         "depends" => [
-            "typo3" => "9.5.0-9.5.99",
+            "typo3" => "9.5.0-10.4.99",
         ],
         "conflicts" => [
         ],
