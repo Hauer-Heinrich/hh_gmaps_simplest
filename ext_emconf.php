@@ -12,7 +12,7 @@
 
 $EM_CONF['hh_gmaps_simplest'] = [
     "title" => "hh_gmaps_simplest",
-    "description" => "",
+    "description" => "Hauer-Heinrich - Simple Google Maps TYPO3 extension.",
     "category" => "fe",
     "author" => "Christian Hackl",
     "author_email" => "chackl@hauer-heinrich.de",
