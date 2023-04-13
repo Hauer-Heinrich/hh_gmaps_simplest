@@ -1,26 +1,48 @@
 {
     "name": "hauerheinrich/hh-gmap-simplest",
-    "description": "",
     "type": "typo3-cms-extension",
-    "license": "GPL-2.0-or-later",
-    "require": {
-        "typo3/cms-backend": "",
-        "typo3/cms-core": "",
-        "typo3/cms-extbase": "",
-        "typo3/cms-fluid": "",
-        "typo3/cms-frontend": ""
+    "description": "Hauer-Heinrich - Simple Google Maps TYPO3 extension.",
+    "authors": [
+        {
+            "name": "Christian Hackl",
+            "email": "chackl@hauer-heinrich.de",
+            "homepage": "http://www.hauer-heinrich.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Hauer-Heinrich/hh_gmaps_simplest/issues",
+        "source": "https://github.com/Hauer-Heinrich/hh_gmaps_simplest",
+        "docs": "https://github.com/Hauer-Heinrich/hh_gmaps_simplest/blob/master/README.md"
     },
+    "funding": [
+        {
+            "type": "paypal",
+            "url": "https://www.paypal.com/paypalme/hauerheinrich"
+        }
+    ],
+    "version": "0.2.0",
+    "license": ["GPL-2.0-or-later"],
+    "keywords": ["TYPO3 CMS", "Google Maps", "Extension"],
     "replace": {
-        "hh_gmaps_simplest": "self.version",
+        "hauer-heinrich/hh_gmaps_simplest": "self.version",
         "typo3-ter/hh-gmap-simplest": "self.version"
+    },
+    "require": {
+        "typo3/cms-core": "^10.4.0 || ^11.5.0",
+        "typo3/cms-fluid": "^10.4.0 || ^11.5.0",
+        "typo3/cms-frontend": "^10.4.0 || ^11.5.0",
+        "typo3/cms-fluid-styled-content": "^10.4.0 || ^11.5.0"
     },
     "autoload": {
         "psr-4": {
-            "HauerHeinrich\\HhGmapsSimplest\\": "Classes/"
+            "HauerHeinrich\\HhSeo\\": "Classes"
         }
     },
     "extra": {
         "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/Web",
             "extension-key": "hh_gmaps_simplest"
         }
     }

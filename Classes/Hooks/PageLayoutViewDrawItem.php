@@ -1,14 +1,14 @@
 <?php
 namespace HauerHeinrich\HhGmapsSimplest\Hooks;
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Backend\Form\Exception;
-use TYPO3\CMS\Backend\Form\FormDataCompiler;
-use TYPO3\CMS\Backend\Form\FormDataGroup\TcaDatabaseRecord;
-use TYPO3\CMS\Backend\View\PageLayoutView;
-use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+// use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use \TYPO3\CMS\Backend\Form\Exception;
+use \TYPO3\CMS\Backend\Form\FormDataCompiler;
+use \TYPO3\CMS\Backend\Form\FormDataGroup\TcaDatabaseRecord;
+use \TYPO3\CMS\Backend\View\PageLayoutView;
+use \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3\CMS\Fluid\View\StandaloneView;
 
 class PageLayoutViewDrawItem implements PageLayoutViewDrawItemHookInterface {
     /**

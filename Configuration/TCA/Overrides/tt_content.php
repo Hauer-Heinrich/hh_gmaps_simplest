@@ -1,4 +1,6 @@
 <?php
+defined('TYPO3_MODE') || die();
+
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['hhgmapssimplest_gmaps'] = 'tx_hhgmapssimplest_gmaps';
 
 $tempColumns = [
