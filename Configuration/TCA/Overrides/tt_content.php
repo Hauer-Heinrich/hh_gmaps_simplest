@@ -1,5 +1,7 @@
 <?php
-defined('TYPO3_MODE') || die();
+defined('TYPO3') || die();
+
+use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['hhgmapssimplest_gmaps'] = 'tx_hhgmapssimplest_gmaps';
 
@@ -28,7 +30,7 @@ $tempColumns = [
         'label' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_marker_text',
     ],
 ];
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
+ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
 
 $GLOBALS['TCA']['tt_content']['columns']['CType']['config']['items'][] = [
     'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.CType.div._hhgmapssimplest_',
@@ -79,3 +81,6 @@ $tempTypes = [
     ],
 ];
 $GLOBALS['TCA']['tt_content']['types'] += $tempTypes;
+
+// Backend Preview
+$GLOBALS['TCA']['tt_content']['types']['hhgmapssimplest_gmaps']['previewRenderer'] = \HauerHeinrich\HhGmapsSimplest\Preview\GmapsSimplestPreviewRenderer::class;
