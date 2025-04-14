@@ -7,27 +7,43 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['hhgmapssimplest_gmaps
 
 $tempColumns = [
     'tx_hhgmapssimplest_gmaps_key' => [
-        'config' => [
-            'type' => 'input',
-        ],
         'exclude' => '1',
         'label' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_gmaps_key',
-    ],
-    'tx_hhgmapssimplest_marker_dest' => [
+        'description' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_gmaps_key.description',
         'config' => [
             'type' => 'input',
         ],
+    ],
+    'tx_hhgmapssimplest_marker_dest' => [
         'exclude' => '1',
         'label' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_marker_dest',
+        'description' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_marker_dest.description',
+        'config' => [
+            'type' => 'input',
+        ],
     ],
     'tx_hhgmapssimplest_marker_text' => [
-        'config' => [
-            'enableRichtext' => '1',
-            'richtextConfiguration' => 'default',
-            'type' => 'text',
-        ],
         'exclude' => '1',
         'label' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_marker_text',
+        'description' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_marker_text.description',
+        'config' => [
+            'type' => 'text',
+            'enableRichtext' => '1',
+            'richtextConfiguration' => 'default',
+
+        ],
+    ],
+    'tx_hhgmapssimplest_gmaps_googleid' => [
+        'exclude' => '1',
+        'label' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_gmaps_googleid',
+        'description' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_gmaps_googleid.description',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim',
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
+        ],
     ],
 ];
 ExtensionManagementUtility::addTCAcolumns('tt_content', $tempColumns);
@@ -54,30 +70,30 @@ $tempTypes = [
             ],
         ],
         'showitem' => '
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.general;general,
-            header,
-            subheader,
-            header_link,
-            header_layout,
-            header_position,
-            tx_hhgmapssimplest_gmaps_key,
-            tx_hhgmapssimplest_marker_text,
-            tx_hhgmapssimplest_marker_dest,
+            --palette--;;headers,
+            bodytext,
+
+            --div--;LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_gmap.tab.option,
+                tx_hhgmapssimplest_gmaps_key,
+                tx_hhgmapssimplest_gmaps_googleid,
+                tx_hhgmapssimplest_marker_text,
+                tx_hhgmapssimplest_marker_dest,
+
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-            --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.frames;frames,
-            --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.appearanceLinks;appearanceLinks,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,
+                --palette--;;frames,
+                --palette--;;appearanceLinks,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                --palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            --palette--;;hidden,
-            --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;access,
+                --palette--;;hidden,
+                --palette--;;access,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
-            --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category,categories,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,rowDescription,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-            tx_gridelements_container,
-            tx_gridelements_columns,
-            --div--;LLL:EXT:gridelements/Resources/Private/Language/locallang_db.xlf:gridElements',
+                    categories,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                rowDescription,
+            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.extended,
+            ',
     ],
 ];
 $GLOBALS['TCA']['tt_content']['types'] += $tempTypes;

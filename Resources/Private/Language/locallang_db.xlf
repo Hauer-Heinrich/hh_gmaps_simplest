@@ -3,14 +3,32 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2019-02-14T14:40:48+01:00" product-name="hh_gmaps_simplest">
     <header/>
     <body>
+      <trans-unit id="tt_content.tx_hhgmapssimplest_gmap.tab.option" xml:space="preserve">
+        <source>Map Options</source>
+      </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_gmaps_key" xml:space="preserve">
         <source>Google Maps API Key</source>
+      </trans-unit>
+      <trans-unit id="tt_content.tx_hhgmapssimplest_gmaps_key.description" xml:space="preserve">
+        <source>https://developers.google.com/maps/documentation/javascript/get-api-key?hl=de</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_marker_dest" xml:space="preserve">
         <source>Marker Place (street 23, 94036 city, country)</source>
       </trans-unit>
+      <trans-unit id="tt_content.tx_hhgmapssimplest_marker_dest.description" xml:space="preserve">
+        <source></source>
+      </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_marker_text" xml:space="preserve">
         <source>Marker Text</source>
+      </trans-unit>
+      <trans-unit id="tt_content.tx_hhgmapssimplest_marker_text.description" xml:space="preserve">
+        <source></source>
+      </trans-unit>
+      <trans-unit id="tt_content.tx_hhgmapssimplest_gmaps_googleid" xml:space="preserve">
+        <source>MapID from Google</source>
+      </trans-unit>
+      <trans-unit id="tt_content.tx_hhgmapssimplest_gmaps_googleid.description" xml:space="preserve">
+        <source>Go to Cloud Console from here: https://mapstyle.withgoogle.com/</source>
       </trans-unit>
       <trans-unit id="tt_content.CType.div._hhgmapsimplest_" xml:space="preserve">
         <source>hh_gmaps_simplest</source>
