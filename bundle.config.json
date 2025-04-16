@@ -1,0 +1,26 @@
+[
+    {
+        "outdir": ".",
+        "entryPoints": [
+            { "in": "./Resources/Public/Css/gmaps.css", "out": "./Resources/Public/Css/gmaps.bundle" },
+            { "in": "./Resources/Public/JavaScript/gmaps.js", "out": "./Resources/Public/JavaScript/gmaps.bundle" }
+        ],
+        "bundle": true,
+        "write": true,
+        "minify": true,
+        "sourcemap": true,
+        "logLevel": "info",
+        "external": [
+            "./Images/*", "../Images/*",
+            "./Fonts/*", "../Fonts/*",
+            "./Icons/*", "../Icons/*",
+            "./Static/*", "../Static/*",
+            "./public/*", "../public/*",
+            "./static/*", "../static/*"
+        ],
+        "supported": {
+            "nesting": false,
+            "is-pseudo-class": false
+        }
+    }
+]

@@ -12,6 +12,13 @@ $tempColumns = [
         'description' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_gmaps_key.description',
         'config' => [
             'type' => 'input',
+            'eval' => 'trim',
+            'nullable' => false,
+            'default' => '',
+            'required' => true,
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
         ],
     ],
     'tx_hhgmapssimplest_marker_dest' => [
@@ -20,6 +27,11 @@ $tempColumns = [
         'description' => 'LLL:EXT:hh_gmaps_simplest/Resources/Private/Language/locallang_db.xlf:tt_content.tx_hhgmapssimplest_marker_dest.description',
         'config' => [
             'type' => 'input',
+            'eval' => 'trim',
+            'placeholder' => 'street 23, ZIP city, country',
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
         ],
     ],
     'tx_hhgmapssimplest_marker_text' => [
@@ -40,6 +52,9 @@ $tempColumns = [
         'config' => [
             'type' => 'input',
             'eval' => 'trim',
+            'nullable' => false,
+            'default' => '',
+            'required' => false,
             'behaviour' => [
                 'allowLanguageSynchronization' => true,
             ],

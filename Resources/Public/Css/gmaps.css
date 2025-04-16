@@ -1,0 +1,8 @@
+.hh-gmaps-simplest {
+    min-height: var(--gmaps-simplest--min-height, 500px);
+
+    & .gm-style-iw-d {
+        margin-top: -32px;
+        max-width: calc(100% - 50px);
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["gmaps.css"],
+  "sourcesContent": [".hh-gmaps-simplest {\r\n    min-height: var(--gmaps-simplest--min-height, 500px);\r\n\r\n    & .gm-style-iw-d {\r\n        margin-top: -32px;\r\n        max-width: calc(100% - 50px);\r\n    }\r\n}\r\n"],
+  "mappings": "AAAA,CAAC,kBACG,WAAY,IAAI,4BAA4B,EAAE,MAMlD,CAPA,CAAC,kBAGK,CAAC,cACC,WAAY,MACZ,UAAW,KAAK,KAAK,EAAE,KAC3B",
+  "names": []
+}

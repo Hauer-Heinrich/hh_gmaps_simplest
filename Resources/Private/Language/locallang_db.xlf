@@ -10,13 +10,13 @@
         <source>Google Maps API Key</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_gmaps_key.description" xml:space="preserve">
-        <source>https://developers.google.com/maps/documentation/javascript/get-api-key?hl=de</source>
+        <source>https://developers.google.com/maps/documentation/javascript/get-api-key</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_marker_dest" xml:space="preserve">
-        <source>Marker Place (street 23, 94036 city, country)</source>
+        <source>Marker Place</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_marker_dest.description" xml:space="preserve">
-        <source></source>
+        <source>Please use format: street 23, 94036 city, country</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_marker_text" xml:space="preserve">
         <source>Marker Text</source>
@@ -25,7 +25,7 @@
         <source></source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_gmaps_googleid" xml:space="preserve">
-        <source>MapID from Google</source>
+        <source>MapID from Google (optional)</source>
       </trans-unit>
       <trans-unit id="tt_content.tx_hhgmapssimplest_gmaps_googleid.description" xml:space="preserve">
         <source>Go to Cloud Console from here: https://mapstyle.withgoogle.com/</source>

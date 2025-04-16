@@ -13,160 +13,35 @@
 </div>
 
 <f:section name="default">
-    <div id="map-{data.uid}" style="min-height:500px;"></div>
+    <f:asset.css identifier="gmaps-simplest" href="EXT:hh_gmaps_simplest/Resources/Public/Css/gmaps.bundle.css" />
+
+    <div id="map-{data.uid}" class="hh-gmaps-simplest"></div>
     <div id="route"></div>
 
-    <style>
-        #map-<f:format.raw>{data.uid}</f:format.raw> .gm-style-iw-d {
-            margin-top: -32px;
-            max-width: calc(100% - 50px);
-        }
-    </style>
-
-    <f:asset.script identifier="gmaps-simplest-gmaps-api" src="https://maps.googleapis.com/maps/api/js?key={data.tx_hhgmapssimplest_gmaps_key}&v=weekly&callback=initMap&libraries=places,marker" async="1" defer="1"></f:asset.script>
-
     <!-- STARTING MAP DEFINITION -->
-    <f:variable name="gmapsId"></f:variable>
-    <f:if condition="{data.tx_hhgmapssimplest_gmaps_googleid"><f:variable name="gmapsId">{data.tx_hhgmapssimplest_gmaps_googleid}</f:variable></f:if>
-    <f:asset.script identifier="gmaps-simplest-config">
-        const mapConfig = {
+    <f:variable name="gmapsId">fallback-mapId-{data.uid}</f:variable>
+    <f:if condition="{data.tx_hhgmapssimplest_gmaps_googleid}"><f:variable name="gmapsId">{data.tx_hhgmapssimplest_gmaps_googleid}</f:variable></f:if>
+    <f:variable name="markerDestination"><f:format.stripTags>{data.tx_hhgmapssimplest_marker_dest}</f:format.stripTags></f:variable>
+
+    <f:asset.script identifier="hh-gmaps-simplest-config" class="hh-gmaps-simplest-config" type="application/json">
+        {
+            "uid": <f:format.raw>{data.uid}</f:format.raw>,
             "elementMapId": "map-<f:format.raw>{data.uid}</f:format.raw>",
             "mapId": "<f:format.raw>{gmapsId}</f:format.raw>",
-            "mapCenterAddress": "Grünaustraße 32 94036 Passau Deutschland",
-            "centerOverAllMarkers": false,
-            "mapZoom": 11,
+            "mapCenterAddress": "<f:format.raw>{markerDestination}</f:format.raw>",
+            "centerOverAllMarkers": true,
+            "zoom": 11,
             "scrollwheel": true,
             "markers": [
                 {
-                    "address": "<f:format.stripTags>{data.tx_hhgmapssimplest_marker_dest}</f:format.stripTags>",
+                    "address": "<f:format.raw>{data.tx_hhgmapssimplest_marker_dest}</f:format.raw>",
                     "markerText": "<f:format.html>{data.tx_hhgmapssimplest_marker_text}</f:format.html>"
                 }
             ]
-        };
-
-        let map, geocoder, directionsService, directionsRenderer;
-        let markers = [];
-
-        function initMap() {
-            // Geocoder und andere Dienste initialisieren
-            geocoder = new google.maps.Geocoder();
-            directionsService = new google.maps.DirectionsService();
-            directionsRenderer = new google.maps.DirectionsRenderer();
-
-            // Karte initialisieren
-            const mapOptions = {
-                zoom: mapConfig.mapZoom,
-                scrollwheel: mapConfig.scrollwheel,
-                mapId: mapConfig.mapId
-            };
-
-            geocoder.geocode({ address: mapConfig.mapCenterAddress }, (results, status) => {
-                if (status === 'OK') {
-                    mapOptions.center = results[0].geometry.location;
-                    map = new google.maps.Map(document.getElementById(mapConfig.elementMapId), mapOptions);
-                    directionsRenderer.setMap(map);
-
-                    if (mapConfig.centerOverAllMarkers) {
-                        centerMapOnMarkers();  // Hier wird die Funktion aufgerufen
-                    }
-
-                    addMarkers();
-                } else {
-                    alert("Geocoding failed: " + status);
-                }
-            });
-        }
-
-        function addMarkers() {
-            mapConfig.markers.forEach((markerData, index) => {
-                geocoder.geocode({ address: markerData.address }, (results, status) => {
-                    if (status === 'OK') {
-                        const position = results[0].geometry.location;
-
-                        // Verwendung von AdvancedMarkerElement
-                        const advancedMarker = new google.maps.marker.AdvancedMarkerElement({
-                            position: position,
-                            map: map,
-                            title: `Marker ${index + 1}`
-                        });
-
-                        advancedMarker.addListener('click', () => {
-                            const infoWindow = new google.maps.InfoWindow({
-                                content: `
-                                    ${markerData.markerText || ''}
-                                    <input type="text" class="marker-input" id="address-input-${index}" placeholder="Gib eine Adresse ein">
-                                    <button onclick="submitAddress(${index})">Routenplaner</button>
-                                `
-                            });
-                            infoWindow.open(map, advancedMarker);
-                        });
-
-
-                        markers[index] = advancedMarker;
-                    } else {
-                        alert("Marker failed: " + status);
-                    }
-                });
-            });
-        }
-
-        function submitAddress(markerIndex) {
-            const address = document.getElementById(`address-input-${markerIndex}`).value;
-
-            if (address) {
-                geocoder.geocode({ address: address }, (results, status) => {
-                    if (status === 'OK') {
-                        const destination = results[0].geometry.location;
-
-                        const request = {
-                            origin: markers[markerIndex].position,
-                            destination: destination,
-                            travelMode: google.maps.TravelMode.DRIVING,
-                        };
-                        console.log(request);
-                        console.log(markerIndex);
-                        console.log(markers);
-                        console.log(address);
-                        directionsService.route(request, (result, status) => {
-                            if (status === 'OK') {
-                                directionsRenderer.setDirections(result);
-                                displayRoute(result);
-                            } else {
-                                alert("Route konnte nicht berechnet werden: " + status);
-                            }
-                        });
-                    } else {
-                        alert("Adresse konnte nicht gefunden werden: " + status);
-                    }
-                });
-            } else {
-                alert("Bitte eine Adresse eingeben.");
-            }
-        }
-
-        function displayRoute(result) {
-            const routeDiv = document.getElementById('route');
-            const routeDetails = result.routes[0].legs[0];
-            routeDiv.innerHTML = `
-                <h3>Routenbeschreibung:</h3>
-                <p>Start: ${routeDetails.start_address}</p>
-                <p>Ziel: ${routeDetails.end_address}</p>
-                <p>Entfernung: ${routeDetails.distance.text}</p>
-                <p>Geschätzte Zeit: ${routeDetails.duration.text}</p>
-            `;
-        }
-
-        // Funktion zum Zentrieren der Karte auf die Marker
-        function centerMapOnMarkers() {
-            let bounds = new google.maps.LatLngBounds();
-
-            markers.forEach(marker => {
-                bounds.extend(marker.getPosition());
-            });
-
-            map.fitBounds(bounds);
         }
     </f:asset.script>
+    <f:asset.script identifier="gmaps-simplest-init" src="EXT:hh_gmaps_simplest/Resources/Public/JavaScript/gmaps.bundle.js" defer="1"></f:asset.script>
+    <f:asset.script identifier="gmaps-simplest-gmaps-api" src="https://maps.googleapis.com/maps/api/js?key={data.tx_hhgmapssimplest_gmaps_key}&v=weekly&callback=initGmapSimplest&libraries=places,marker" defer="1"></f:asset.script>
 </f:section>
 
 </html>
