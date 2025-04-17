@@ -1,16 +1,17 @@
-tt_content.hhgmapssimplest_gmaps = FLUIDTEMPLATE
+tt_content.hhgmapssimplest_gmaps =< lib.contentElement
 tt_content.hhgmapssimplest_gmaps {
     layoutRootPaths {
-        0 = EXT:hh_gmaps_simplest/Resources/Private/Layouts/
-        10 = {$plugin.tx_hhgmapssimplest.view.layoutRootPath}
+        100 = EXT:hh_gmaps_simplest/Resources/Private/Layouts/
+        200 = {$plugin.tx_hhgmapssimplest.view.layoutRootPath}
     }
     partialRootPaths {
-        0 = EXT:hh_gmaps_simplest/Resources/Private/Partials/
-        10 = {$plugin.tx_hhgmapssimplest.view.partialRootPath}
+        100 = EXT:hh_gmaps_simplest/Resources/Private/Partials/
+        200 = {$plugin.tx_hhgmapssimplest.view.partialRootPath}
     }
     templateRootPaths {
-        0 = EXT:hh_gmaps_simplest/Resources/Private/Templates/
-        10 = {$plugin.tx_hhgmapssimplest.view.templateRootPath}
+        100 = EXT:hh_gmaps_simplest/Resources/Private/Templates/
+        200 = {$plugin.tx_hhgmapssimplest.view.templateRootPath}
     }
+
     templateName = Gmaps
 }

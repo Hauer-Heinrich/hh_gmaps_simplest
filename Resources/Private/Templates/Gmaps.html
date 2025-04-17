@@ -1,16 +1,26 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-<div id="wrapper" class="map-wrapper hhgmapssimplest googlemaps">
-    <f:if condition="{data.tx_hhgmapssimplest_gmaps_key}">
-        <f:then>
-            <f:render section="default" arguments="{_all}" />
-        </f:then>
-        <f:else>
-            <p class="error" style="background-color: red; color: #fff; padding: 10px;">No Googlemaps API-Key given!</p>
-        </f:else>
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <f:if condition="{data.bodytext}">
+        <div class="ce-bodytext">
+            <f:format.html>{data.bodytext}</f:format.html>
+        </div>
     </f:if>
-</div>
+
+    <div id="gmaps-{data.uid}" class="map-wrapper hhgmapssimplest googlemaps">
+        <f:if condition="{data.tx_hhgmapssimplest_gmaps_key}">
+            <f:then>
+                <f:render section="default" arguments="{_all}" />
+            </f:then>
+            <f:else>
+                <p class="error" style="background-color: red; color: #fff; padding: 10px;">No Googlemaps API-Key given!</p>
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
 
 <f:section name="default">
     <f:asset.css identifier="gmaps-simplest" href="EXT:hh_gmaps_simplest/Resources/Public/Css/gmaps.bundle.css" />
@@ -23,7 +33,7 @@
     <f:if condition="{data.tx_hhgmapssimplest_gmaps_googleid}"><f:variable name="gmapsId">{data.tx_hhgmapssimplest_gmaps_googleid}</f:variable></f:if>
     <f:variable name="markerDestination"><f:format.stripTags>{data.tx_hhgmapssimplest_marker_dest}</f:format.stripTags></f:variable>
 
-    <f:asset.script identifier="hh-gmaps-simplest-config" class="hh-gmaps-simplest-config" type="application/json">
+    <f:asset.script identifier="hh-gmaps-simplest-config-{data.uid}" class="hh-gmaps-simplest-config" type="application/json">
         {
             "uid": <f:format.raw>{data.uid}</f:format.raw>,
             "elementMapId": "map-<f:format.raw>{data.uid}</f:format.raw>",
@@ -40,6 +50,7 @@
             ]
         }
     </f:asset.script>
+
     <f:asset.script identifier="gmaps-simplest-init" src="EXT:hh_gmaps_simplest/Resources/Public/JavaScript/gmaps.bundle.js" defer="1"></f:asset.script>
     <f:asset.script identifier="gmaps-simplest-gmaps-api" src="https://maps.googleapis.com/maps/api/js?key={data.tx_hhgmapssimplest_gmaps_key}&v=weekly&callback=initGmapSimplest&libraries=places,marker" defer="1"></f:asset.script>
 </f:section>
